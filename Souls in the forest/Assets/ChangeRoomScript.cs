@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class ChangeRoomScript : MonoBehaviour 
 {
 	public string m_NextRoom = "";
+
+	public string m_ConnectedTransision = "";
 
 	// Use this for initialization
 	void Start () 
@@ -21,8 +24,8 @@ public class ChangeRoomScript : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "Player") 
 		{
-			DontDestroyOnLoad(coll.gameObject);
-			Application.LoadLevel (m_NextRoom);
+			
+            SceneManager.LoadScene(m_NextRoom);
 		}
 
 	}
