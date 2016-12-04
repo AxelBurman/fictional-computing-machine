@@ -30,5 +30,6 @@ public class InteractableScript : MonoBehaviour {
     void OnInteract()
     {
         m_TargetObject.SendMessage(m_MessageOnInteract);
+        gameObject.SetActive(false);
     }
 }
