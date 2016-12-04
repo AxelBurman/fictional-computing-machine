@@ -17,11 +17,11 @@ public class ClimbableScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        other.transform.SendMessage("EnterClimb", transform);
+        other.transform.SendMessage("EnterClimb", transform, SendMessageOptions.DontRequireReceiver);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        other.transform.SendMessage("ExitClimb", transform);
+        other.transform.SendMessage("ExitClimb", transform, SendMessageOptions.DontRequireReceiver);
     }
 }
