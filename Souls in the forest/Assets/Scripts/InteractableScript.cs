@@ -19,12 +19,12 @@ public class InteractableScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        other.transform.SendMessage("EnterInteract", transform);
+        other.transform.SendMessage("EnterInteract", transform, SendMessageOptions.DontRequireReceiver);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        other.transform.SendMessage("ExitInteract", transform);
+        other.transform.SendMessage("ExitInteract", transform, SendMessageOptions.DontRequireReceiver);
     }
 
     void OnInteract()

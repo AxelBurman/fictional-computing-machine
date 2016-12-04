@@ -7,6 +7,9 @@ public class GhostNPCScript : MonoBehaviour
 {
     public List<string> m_dialogueOnInteract = new List<string>();
     protected int m_CurrentMilestone = 0;
+
+    public TextMesh m_TextDisplay;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -27,5 +30,6 @@ public class GhostNPCScript : MonoBehaviour
     void Interact()
     {
         Debug.Log(m_dialogueOnInteract[m_CurrentMilestone]);
+        m_TextDisplay.text = m_dialogueOnInteract[m_CurrentMilestone];
     }
 }
