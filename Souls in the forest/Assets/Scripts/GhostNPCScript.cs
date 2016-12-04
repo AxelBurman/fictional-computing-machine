@@ -5,7 +5,7 @@ using System.Collections;
 
 public class GhostNPCScript : MonoBehaviour
 {
-    public List<string> m_dialogueOnInteract = new List<string>();
+    public List<GameObject> m_dialogueOnInteract = new List<GameObject>();
     protected int m_CurrentMilestone = 0;
 
     public TextMesh m_TextDisplay;
@@ -29,7 +29,9 @@ public class GhostNPCScript : MonoBehaviour
 
     void Interact()
     {
-        Debug.Log(m_dialogueOnInteract[m_CurrentMilestone]);
-        m_TextDisplay.text = m_dialogueOnInteract[m_CurrentMilestone];
+        if(m_CurrentMilestone > 0)
+            m_dialogueOnInteract[m_CurrentMilestone -1].SetActive(false);
+
+        m_dialogueOnInteract[m_CurrentMilestone].SetActive(true);
     }
 }
