@@ -31,7 +31,7 @@ public class PlayerActions : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.I))
             {
-                m_CurrentInteractCollider.SendMessage("OnInteract");
+                m_CurrentInteractCollider.SendMessage("OnInteract", SendMessageOptions.DontRequireReceiver);
             }
         }
 
