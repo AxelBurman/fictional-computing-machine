@@ -12,11 +12,16 @@ public class PlayerActions : MonoBehaviour
     private bool m_CanClimb = false;
 
     private Rigidbody2D rb;
+    public GameObject m_PlayerGhost;
+    public Rigidbody2D m_PlayerGhostRB;
+    private bool m_GhostIsActive;
 
     // Use this for initialization
     void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
+        m_PlayerGhostRB = m_PlayerGhost.GetComponent<Rigidbody2D>();
+        m_GhostIsActive = false;
     }
 	
 	// Update is called once per frame
@@ -41,8 +46,28 @@ public class PlayerActions : MonoBehaviour
             {
                 rb.MovePosition(rb.position + Vector2.down * m_ClimbSpeed);
             }
+
+
         }
-	}
+        else if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (!m_GhostIsActive)
+            {
+                m_GhostIsActive = true;
+                m_PlayerGhost.SendMessage("ActivateGhost");
+                SendMessage("InputActive");
+                SendMessage("SetCameraFocus", m_PlayerGhost.transform);
+            }
+            else
+            {
+                rb.MovePosition(m_PlayerGhostRB.position);
+                m_GhostIsActive = false;
+                m_PlayerGhost.SendMessage("DeactivateGhost");
+                SendMessage("InputActive");
+                SendMessage("SetCameraFocus", transform);
+            }
+        }
+    }
 
     void EnterInteract(Transform i_Trans)
     {
